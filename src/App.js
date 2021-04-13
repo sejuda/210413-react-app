@@ -1,25 +1,93 @@
-import logo from './logo.svg';
-import './App.css';
+// react 야 Subject라는 이름의 태그를 나는 만들거야.
+// 이 태그의 내용은 아래와 같아.
+// 사용자 정의 태그를 만들 수 있다.
+import React, { Component, useState } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+//property => props
+class Subject extends Component {
+  render() {
+    return (
+      <header>
+        <h1>{this.props.title}</h1>
+        {this.props.sub}
       </header>
-    </div>
-  );
+    );
+  }
+}
+
+class Toc extends Component {
+  render() {
+    let list = [];
+    let i = 0;
+    while (i < this.props.data.length) {
+      let data = this.props.data[i];
+      list.push(
+        <li key={data.id}>
+          {/* data.id 는 고유 식별자 */}
+          <a
+            href={data.id + ".html"}
+            onClick={function (e) {
+              e.preventDefault();
+            }}
+          >
+            {data.title}
+          </a>
+        </li>
+      );
+      i = i + 1;
+    }
+
+    return (
+      <nav>
+        <ol>{list}</ol>
+      </nav>
+    );
+  }
+}
+
+class Content extends Component {
+  render() {
+    return (
+      <article>
+        <h2>{this.props.title}</h2>
+        {this.props.sub}
+      </article>
+    );
+  }
+}
+class App extends Component {
+  state = {
+    selected_content_id: 1,
+    contents: [
+      { id: 1, title: "HTML", desc: "HTML is for information" },
+      { id: 2, title: "CSS", desc: "CSS is for design" },
+      { id: 3, title: "JavaScript", desc: "JavaScript is for interaction" },
+    ],
+  };
+
+  getSelectedContent() {
+    let i = 0;
+    while (i < this.state.contents.length) {
+      let data = this.state.contents[i];
+      if (this.state.selected_content_id === data.id) {
+        return data;
+      }
+      i = i + 1;
+    }
+  }
+
+  render() {
+    let content = this.getSelectedContent;
+    return (
+      <div className="App">
+        <Subject title="WEB" sub="World wide web"></Subject>
+
+        <Toc data={this.state.contents}></Toc>
+
+        <Content title="Welcom" sub="Hello web"></Content>
+      </div>
+    );
+  }
 }
 
 export default App;
