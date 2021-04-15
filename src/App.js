@@ -2,7 +2,7 @@
 // 이 태그의 내용은 아래와 같아.
 // 사용자 정의 태그를 만들 수 있다.
 import React, { Component, useState } from "react";
-
+//리액트 앱 0415
 //property => props
 class Subject extends Component {
   render() {
