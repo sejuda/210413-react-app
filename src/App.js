@@ -15,6 +15,8 @@ class Subject extends Component {
   }
 }
 
+// 이부분 맵으로 바꿀 수 있음 0415
+
 class Toc extends Component {
   render() {
     let list = [];
