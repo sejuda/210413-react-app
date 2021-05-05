@@ -29,6 +29,7 @@ class Subject extends Component {
 //0502 test
 //0503 test
 //0504 test
+//0506 test
 class Toc extends Component {
   render() {
     let list = [];
