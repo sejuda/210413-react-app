@@ -114,6 +114,7 @@ class Subject extends Component {
 //0901 test
 //0902 test
 //0904 test
+//0906 test
 class Toc extends Component {
   render() {
     let list = [];
